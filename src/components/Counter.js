@@ -4,19 +4,19 @@ import './Counter.css';
 
 
 // 오직 props로 셋팅!
-const Counter = ({ number, color, onIncrement, onDecrement, onSetColor}) => {
+const Counter = ({ number, color, index, onIncrement, onDecrement, onSetColor}) => {
     return (
         <div
             className="Counter"
-            onClick={onIncrement}
+            onClick={()=> onIncrement(index)}
             // 우클릭 메뉴 열리는 이벤트 => e.preventDefault()로 메뉴열리지않게
             onContextMenu={
                 (e) => {
                     e.preventDefault();
-                    onDecrement();
+                    onDecrement(index);
                 }
             }
-            onDoubleClick={onSetColor}
+            onDoubleClick={()=>onSetColor(index)}
             style={{backgroundColor: color}}
             >
             {number}
@@ -25,6 +25,7 @@ const Counter = ({ number, color, onIncrement, onDecrement, onSetColor}) => {
 }
 
 Counter.propTypes = {
+    idnex: PropTypes.number,
     number: PropTypes.number,
     color: PropTypes.string,
     onIncrement: PropTypes.func,
@@ -33,6 +34,7 @@ Counter.propTypes = {
 };
 
 Counter.defaultProps = {
+    idnex: 0,
     number: 0,
     color: 'black',
     onIncrement: () => console.warn('onIncrement not defined'),

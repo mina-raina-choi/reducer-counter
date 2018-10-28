@@ -1,4 +1,4 @@
-export function getRandomColor() {
+export default function getRandomColor() {
     const colors = [
         '#495057',
         '#f03e3e',

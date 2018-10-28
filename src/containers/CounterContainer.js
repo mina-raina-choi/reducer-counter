@@ -6,7 +6,7 @@ import * as actions from '../actions';
 //  => 리턴된 함수안에 프레젠테이셔널 컴포넌트를 파라미터로 전달해주면, 
 // ==> 리덕스스토어에 연결된 컴포넌트가 새로 만들어짐..
 import { connect } from 'react-redux';
-import { getRandomColor } from '../utils';
+import { getRandomColor } from '../lib';
 
 // store 안의 state 값을 props 로 연결해줍니다.
 const mapStateToProps = (state) => ({

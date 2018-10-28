@@ -1,3 +1,98 @@
+import * as types from '../actions/ActionTypes';
+
+const initialState = {
+    counters: [
+        {
+            color: 'black',
+            number: 0
+        }
+    ]
+}
+
+
+function counter(state = initialState, action) {
+    // 레퍼런스 생성
+    const { counters } = state;
+
+    switch (action.type) {
+        case types.CREATE:
+            return {
+                counters: [
+                    ...counters,
+                    {
+                        color: action.color,
+                        number: 0
+                    }
+                ]
+            }
+
+        case types.REMOVE:
+            return {
+                counters: counters.slice(0, counters.length - 1)
+            }
+
+
+
+        case types.INCREMENT:
+            return {
+
+                counters: [
+                    ...counters.slice(0, action.index),
+                    {
+                        ...counters[action.index],
+                        number: counters[action.index].number + 1
+                    },
+                    ...counters.slice(action.index + 1, counters.length)
+                ]
+            }
+
+
+        case types.DECREMENT:
+            return {
+                counters: [
+                    ...counters.slice(0, action.index),
+                    {
+                        ...counters[action.index],
+                        number: counters[action.index].number - 1
+                    },
+                    ...counters.slice(action.index + 1, counters.length)
+                ]
+            }
+
+
+        case types.SET_COLOR:
+            return {
+                counters: [
+                    ...counters.slice(0, action.index),
+                    {
+                        ...counters[action.index],
+                        color: action.color
+                    },
+                    ...counters.slice(action.index + 1, counters.length)
+                ]
+            }
+
+
+        default:
+            return state;
+    }
+}
+
+export default counter;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import * as types from '../actions/ActionTypes';
 
 // // 리듀서는 액션의 type에 따라 변화를 일으키는 함수입니다.
@@ -37,14 +132,14 @@
 // export default counter;
 
 
-import number from './number';
-import color from './color';
+// import number from './number';
+// import color from './color';
 
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 
-const reducers = combineReducers({
-    numberData: number,
-    colorData: color
-})
+// const reducers = combineReducers({
+//     numberData: number,
+//     colorData: color
+// })
 
-export default reducers;
+// export default reducers;
