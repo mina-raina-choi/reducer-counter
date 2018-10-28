@@ -10,9 +10,12 @@ import { getRandomColor } from '../utils';
 
 // store 안의 state 값을 props 로 연결해줍니다.
 const mapStateToProps = (state) => ({
-    color: state.color,
-    number: state.number
+    color: state.colorData.color,
+    number: state.numberData.number
 })
+
+
+
 
 /* 
     액션 생성자를 사용하여 액션을 생성하고,
@@ -31,6 +34,10 @@ const mapDispatchToProps = (dispatch) => ({
 // Counter 컴포넌트의 Container 컴포넌트
 // Counter 컴포넌트를 어플리케이션의 데이터 레이어와 묶는 역할을 합니다.
 
+
+// ㅇㅣ렇게 하면... mapStateToprops의 color, number
+// mapDispatchToProps의 onIncrement, onDecrement, onSetColor가
+// Counter 컴포넌트의 props로 셋팅...
 const CounterContainer = connect(
     mapStateToProps,
     mapDispatchToProps
